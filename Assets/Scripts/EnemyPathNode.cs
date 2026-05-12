@@ -1,16 +1,15 @@
+using System;
 using UnityEngine;
 
-public class EnemyPathNode : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+public class EnemyPathNode : MonoBehaviour {
+    public EnemyPathNode Next;
+    public bool IsEnd;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.cornflowerBlue;
+        Gizmos.DrawSphere(transform.position, 0.5f);
+        if (Next) {
+            Gizmos.DrawLine(transform.position, Next.transform.position);
+        }
     }
 }
