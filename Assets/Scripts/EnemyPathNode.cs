@@ -7,7 +7,7 @@ public class EnemyPathNode : MonoBehaviour {
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.cornflowerBlue;
-        Gizmos.DrawSphere(transform.position, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
         if (Next) {
             Gizmos.DrawLine(transform.position, Next.transform.position);
         }
