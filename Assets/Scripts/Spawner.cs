@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Spawner : MonoBehaviour {
     public GameObject EnemyPrefab;
     private float _nextSpawnTime;
     public EnemyPathNode FirstNode;
-    public const float SPAWN_COOLDOWN = 2f;
+    public float SpawnCooldown = 2f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -16,7 +17,7 @@ public class Spawner : MonoBehaviour {
         
         if (_nextSpawnTime <= Time.time) {
             SpawnEnemy();
-            _nextSpawnTime = Time.time + Spawner.SPAWN_COOLDOWN;
+            _nextSpawnTime = Time.time + SpawnCooldown;
         }
     }
 
