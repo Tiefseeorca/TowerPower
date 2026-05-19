@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
     public float TurnSpeed = 3 * 360;
     public float DistanceToGoal { get; private set; }
     public int Hp = 0;
+    public int Strength;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -57,7 +58,6 @@ public class Enemy : MonoBehaviour {
     }
 
     public void GetHit(int damage) {
-        Debug.Log("Reducing HP");
         Hp -= damage;
         if(Hp <= 0) _onDespawn();
     }
@@ -70,22 +70,19 @@ public class Enemy : MonoBehaviour {
         if (!prev) {
             return true;
         }
-
         switch (targeting) {
             case Tower.TargetingOption.First:
                 return this.DistanceToGoal < prev.DistanceToGoal;
             case Tower.TargetingOption.Last:
                 return this.DistanceToGoal > prev.DistanceToGoal;
             case Tower.TargetingOption.Strongest:
-                break;
+                return this.Strength > prev.Strength;
             case Tower.TargetingOption.Weakest:
-                break;
+                return this.Strength < prev.Strength;
             case Tower.TargetingOption.LowestHp:
                 return this.Hp < prev.Hp;
             default:
                 return false;
         }
-
-        return false;
     }
 }

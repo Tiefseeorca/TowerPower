@@ -99,11 +99,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 149715540329488597}
-  - component: {fileID: 7224905762910109398}
   - component: {fileID: 3709577645070175631}
   - component: {fileID: 117890823494499508}
+  - component: {fileID: 5026708579716227059}
   m_Layer: 0
-  m_Name: TowerProjectile
+  m_Name: CannonBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,20 +125,6 @@ Transform:
   - {fileID: 8630588081810696129}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7224905762910109398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9151510128613910378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f40f7749e361e4a9309c8d484bf413, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  Speed: 10
-  Damage: 1
 --- !u!135 &3709577645070175631
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -187,3 +173,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5026708579716227059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151510128613910378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c47e2d05fba81c479a88b04fd3edbc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonBall
+  Speed: 20
+  Damage: 1
+  RemainingLifetime: 60
+  Explosion: {fileID: 3556028431556058141, guid: 8e0b1edfe8a26eb41ad12c43986332eb, type: 3}

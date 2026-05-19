@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9154750036573493204}
   - component: {fileID: 9211799177207514666}
   - component: {fileID: -7881563440901960116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,8 @@ MonoBehaviour:
   Target: {fileID: 0}
   Speed: 2
   TurnSpeed: 360
-  Hp: 3
+  Hp: 5
+  Strength: 1
 --- !u!135 &9211799177207514666
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -150,6 +151,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7b1e84ffa16b82247a7c833fc1366965, type: 3}
       propertyPath: m_Name
       value: enemy-ufo-c
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7b1e84ffa16b82247a7c833fc1366965, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -20,6 +20,8 @@ public class Tower : MonoBehaviour {
     }
 
     public TargetingOption Targeting;
+    public bool StayLockedOnTarget = false;
+    public Enemy ChosenTarget;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -32,16 +34,31 @@ public class Tower : MonoBehaviour {
             _attackCooldown -= Time.deltaTime;
         }
         if (_attackCooldown <= 0) {
-            Enemy target = _selectEnemy();
+            Enemy target;
+            if (StayLockedOnTarget && _isTargetInRange(ChosenTarget)) {
+                target = ChosenTarget;
+            }
+            else {
+                target = _selectEnemy();
+            }
+
             if (target) {
                 _turnTowardsEnemy(target);
                 _shoot(target);
             }
+            else {
+                _attackCooldown = 0.1f;
+            }
         }
     }
 
+    private bool _isTargetInRange(Enemy target) {
+        Collider c = target.GetComponent<Collider>();
+        return (Vector3.Distance(this.transform.position, c.transform.position) <= Range);
+    }
+
     private Collider[] _detectEnemies() {
-        Collider[] collidersInRange = Physics.OverlapSphere(transform.position, Range);
+        Collider[] collidersInRange = Physics.OverlapSphere(transform.position, Range, LayerMask.GetMask("Enemies"));
         return collidersInRange;
     }
     
