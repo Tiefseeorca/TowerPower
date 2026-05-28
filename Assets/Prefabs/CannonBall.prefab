@@ -169,7 +169,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -185,7 +185,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c47e2d05fba81c479a88b04fd3edbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CannonBall
-  Speed: 20
-  Damage: 1
-  RemainingLifetime: 60
+  Stats: {fileID: 11400000, guid: 28e9021c10d2a9c4d9a5c9a03ca11219, type: 2}
   Explosion: {fileID: 3556028431556058141, guid: 8e0b1edfe8a26eb41ad12c43986332eb, type: 3}

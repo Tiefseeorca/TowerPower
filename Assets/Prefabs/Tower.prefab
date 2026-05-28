@@ -45,10 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83623a3c9ccaf4b4ca936ad6f306ff30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Range: 5
-  FireRate: 2
+  Stats: {fileID: 11400000, guid: 04cb36854c99c82449167e941d160fce, type: 2}
   _attackCooldown: 0
-  Projectile: {fileID: 9151510128613910378, guid: 8ff8bb5749ff87249ae92bb4f07db20a, type: 3}
   Targeting: 0
   StayLockedOnTarget: 0
   ChosenTarget: {fileID: 0}

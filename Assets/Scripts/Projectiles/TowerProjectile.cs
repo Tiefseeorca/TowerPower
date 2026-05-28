@@ -2,18 +2,18 @@ using System;
 using UnityEngine;
 
 public class TowerProjectile : MonoBehaviour {
-    public float Speed;
-    public int Damage;
-    public float RemainingLifetime = 10;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public ProjectileStats Stats;
+
+    public float RemainingLifetime;
+
     void Start() {
-        
+        RemainingLifetime = Stats.MaxLifetime;
     }
 
     // Update is called once per frame
     void Update() {
         _checkRaycast();
-        transform.Translate(0, 0, Speed * Time.deltaTime);
+        transform.Translate(0, 0, Stats.Speed * Time.deltaTime);
         _lifeTimeHandling();
     }
 
@@ -25,7 +25,7 @@ public class TowerProjectile : MonoBehaviour {
     }
 
     private void _checkRaycast() {
-        float distanceThisFrame = Speed * Time.deltaTime;
+        float distanceThisFrame = Stats.Speed * Time.deltaTime;
         bool hasHit = Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distanceThisFrame, LayerMask.GetMask("Enemies"));
         if (hasHit) {
             Enemy enemy = hit.collider.GetComponent<Enemy>();
@@ -34,15 +34,8 @@ public class TowerProjectile : MonoBehaviour {
         }
     }
 
-    /*private void OnCollisionEnter(Collision enemyCol) {
-        Enemy enemy = enemyCol.gameObject.GetComponent<Enemy>();
-        if (!enemy) return;
-        //enemy.GetHit(Damage);
-        OnHit(enemy);
-    }*/
-
     protected virtual void OnHit(Enemy enemy) {
-        enemy.GetHit(Damage);
+        enemy.GetHit(Stats.Damage);
         _onDespawn();
     }
 
@@ -50,7 +43,7 @@ public class TowerProjectile : MonoBehaviour {
         _onDespawn();
     }
     
-    private void _onDespawn() {
+    protected void _onDespawn() {
         Destroy(gameObject);
     }
 }

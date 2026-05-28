@@ -48,10 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Target: {fileID: 0}
-  Speed: 2
   TurnSpeed: 360
-  Hp: 5
-  Strength: 1
+  _hp: 20
+  Stats: {fileID: 11400000, guid: fca353641e76f9f4a8c205a2768506a3, type: 2}
 --- !u!135 &9211799177207514666
 SphereCollider:
   m_ObjectHideFlags: 0

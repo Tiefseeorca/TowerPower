@@ -3,17 +3,9 @@ using System.Net;
 using UnityEngine;
 
 public class Tower : MonoBehaviour {
-    // TODO: detect enemies
-    // TODO: turn towards enemy
-    // TODO: shoot
-    // TODO: priority
-    // TODO: stats like strength, fire rate, range etc.
-
-    public float Range;
-    public float FireRate;
+    public TowerStats Stats;
     // SerializeField: makes it so you can edit this value in Unity during runtime despite being private
     [SerializeField] private float _attackCooldown;
-    public GameObject Projectile;
 
     public enum TargetingOption {
         First, Last, Strongest, Weakest, LowestHp
@@ -54,11 +46,11 @@ public class Tower : MonoBehaviour {
 
     private bool _isTargetInRange(Enemy target) {
         Collider c = target.GetComponent<Collider>();
-        return (Vector3.Distance(this.transform.position, c.transform.position) <= Range);
+        return (Vector3.Distance(this.transform.position, c.transform.position) <= Stats.Range);
     }
 
     private Collider[] _detectEnemies() {
-        Collider[] collidersInRange = Physics.OverlapSphere(transform.position, Range, LayerMask.GetMask("Enemies"));
+        Collider[] collidersInRange = Physics.OverlapSphere(transform.position, Stats.Range, LayerMask.GetMask("Enemies"));
         return collidersInRange;
     }
     
@@ -83,7 +75,7 @@ public class Tower : MonoBehaviour {
     }
 
     private void _shoot(Enemy target) {
-        GameObject newProjectile = Instantiate(Projectile, transform.position, Quaternion.identity);
+        GameObject newProjectile = Instantiate(Stats.Projectile, transform.position, Quaternion.identity);
         Vector3 projectilePos = newProjectile.transform.position;
         projectilePos.y = target.transform.position.y;
         newProjectile.transform.position = projectilePos;
@@ -92,11 +84,11 @@ public class Tower : MonoBehaviour {
         /* Rigidbody projectileRB = newProjectile.GetComponent<Rigidbody>();
          if (projectileRB) {
             projectileRB.linearVelocity = newProjectile.transform.forward * 5;
-        }*/
-        _attackCooldown = 1 / Mathf.Max(FireRate, 0.001f);
+        }*/ 
+        _attackCooldown = 1 / Mathf.Max(Stats.FireRate, 0.001f);
     }
 
     private void OnDrawGizmos() {
-        Gizmos.DrawWireSphere(transform.position, Range);
+        Gizmos.DrawWireSphere(transform.position, Stats.Range);
     }
 }
