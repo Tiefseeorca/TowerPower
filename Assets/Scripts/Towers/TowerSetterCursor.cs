@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,9 +8,11 @@ public class TowerSetterCursor : MonoBehaviour {
     public List<GameObject> PlaceableTowers;
     public int SelectedTowerIndex;
     public List<GameObject> Holograms;
+    private TextMeshPro _priceTag;
 
     void Start() {
         SelectedTowerIndex = 0;
+        _priceTag = transform.GetChild(1).gameObject.GetComponent<TextMeshPro>();
         SwapToTurret(0);
     }
     
@@ -55,6 +58,7 @@ public class TowerSetterCursor : MonoBehaviour {
         Holograms[SelectedTowerIndex].SetActive(false);
         SelectedTowerIndex = index;
         Holograms[SelectedTowerIndex].SetActive(true);
+        _priceTag.text = PlaceableTowers[SelectedTowerIndex].GetComponent<Tower>().Stats.price.ToString();
     }
     
 }

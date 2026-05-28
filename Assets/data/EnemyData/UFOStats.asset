@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc00a9a9d7d63e4ea396a7724d60b70, type: 3}
   m_Name: UFOStats
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  Speed: 0
-  MaxHp: 0
-  Strength: 0
+  Speed: 3
+  MaxHp: 20
+  Strength: 1
+  Reward: 10
