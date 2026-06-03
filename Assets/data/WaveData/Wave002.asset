@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af51fc2e3504534fb8bb80e79d5ebb0, type: 3}
+  m_Name: Wave002
+  m_EditorClassIdentifier: Assembly-CSharp::Wave
+  Batches:
+  - EnemyType: {fileID: 8400179284758131625, guid: 567d24c256978e8458249fc6d8e6a276, type: 3}
+    Amount: 8
+    DelayPerEnemy: 1
+    EndDelay: 0
+  - EnemyType: {fileID: 8400179284758131625, guid: 567d24c256978e8458249fc6d8e6a276, type: 3}
+    Amount: 4
+    DelayPerEnemy: 0.25
+    EndDelay: 0
+  - EnemyType: {fileID: 8400179284758131625, guid: 567d24c256978e8458249fc6d8e6a276, type: 3}
+    Amount: 8
+    DelayPerEnemy: 1
+    EndDelay: 0
+  Reward: 60

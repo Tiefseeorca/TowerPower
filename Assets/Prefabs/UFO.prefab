@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9211799177207514666}
   - component: {fileID: -7881563440901960116}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: UFO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

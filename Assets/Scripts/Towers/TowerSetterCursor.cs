@@ -5,15 +5,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TowerSetterCursor : MonoBehaviour {
+    private static readonly int Blocked = Shader.PropertyToID("_Blocked");
     public List<GameObject> PlaceableTowers;
     public int SelectedTowerIndex;
     public List<GameObject> Holograms;
     private TextMeshPro _priceTag;
+    private MeshRenderer[] _allMeshRenderers;
 
     void Start() {
         SelectedTowerIndex = 0;
         _priceTag = transform.GetChild(1).gameObject.GetComponent<TextMeshPro>();
         SwapToTurret(0);
+        _allMeshRenderers = Holograms[SelectedTowerIndex].GetComponentsInChildren<MeshRenderer>();
     }
     
     void Update() {
@@ -26,6 +29,7 @@ public class TowerSetterCursor : MonoBehaviour {
             //transform.position = objectHit.position;
             if (!Mouse.current.leftButton.wasPressedThisFrame) return;
             AttemptPlacingTower(objectHit);
+            _updateShader(PlaceableTowers[SelectedTowerIndex].GetComponent<Tower>().Stats.price > Bank.Instance.Balance);
         }
     }
 
@@ -34,6 +38,7 @@ public class TowerSetterCursor : MonoBehaviour {
         if (socket) {
             if (!socket.CanPlace()) {
                 Debug.Log("Tower could not be placed because socket is occupied");
+                _updateShader(true);
                 return;
             }
 
@@ -41,8 +46,10 @@ public class TowerSetterCursor : MonoBehaviour {
             int price = towerToPlace.GetComponent<Tower>().Stats.price;
             if (price > Bank.Instance.Balance) {
                 Debug.Log("Tower could not be placed because it is too expensive");
+                _updateShader(true);
                 return;
             }
+            _updateShader(false);
             socket.Place(Instantiate(towerToPlace, objectHit.position, Quaternion.identity));
             Bank.SpendMoney.Invoke(price);
         }
@@ -60,5 +67,10 @@ public class TowerSetterCursor : MonoBehaviour {
         Holograms[SelectedTowerIndex].SetActive(true);
         _priceTag.text = PlaceableTowers[SelectedTowerIndex].GetComponent<Tower>().Stats.price.ToString();
     }
-    
+
+    private void _updateShader(bool isBlocked) {
+        foreach (MeshRenderer renderer in _allMeshRenderers) {
+            renderer.material.SetFloat(Blocked, isBlocked?1:0);
+        }
+    }
 }

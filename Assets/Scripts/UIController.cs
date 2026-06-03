@@ -4,16 +4,22 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour {
     public TextMeshProUGUI BalanceDisplay;
+    public TextMeshProUGUI WaveCounterDisplay;
 
     public GameObject PauseMenu;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         //BalanceDisplay = GetComponent<TextMeshProUGUI>();
         Bank.MoneyChanged.AddListener(UpdateBalance);
+        Spawner.WaveCounterChanged.AddListener(UpdateWaveCounter);
     }
 
     void UpdateBalance(int newBalance) {
         BalanceDisplay.text = newBalance.ToString();
+    }
+
+    void UpdateWaveCounter(int count, int max) {
+        WaveCounterDisplay.text = $"{count} / {max}";
     }
 
     public void Pause() {
